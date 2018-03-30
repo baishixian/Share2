@@ -14,7 +14,7 @@ import java.lang.annotation.RetentionPolicy;
  */
 
 @StringDef({ShareContentType.TEXT, ShareContentType.IMAGE,
-        ShareContentType.AUDIO, ShareContentType.VIDEO, ShareContentType.File})
+        ShareContentType.AUDIO, ShareContentType.VIDEO, ShareContentType.FILE})
 @Retention(RetentionPolicy.SOURCE)
 @interface ShareContentType {
     /**
@@ -40,5 +40,5 @@ import java.lang.annotation.RetentionPolicy;
     /**
      * Share File
      */
-    final String File = "*/*";
+    final String FILE = "*/*";
 }

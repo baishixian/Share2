@@ -67,7 +67,7 @@ class FileUtil {
                 case ShareContentType.AUDIO :
                     uri = getAudioContentUri(context, file);
                     break;
-                case ShareContentType.File :
+                case ShareContentType.FILE:
                     uri = getFileContentUri(context, file);
                     break;
                 default: break;

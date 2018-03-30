@@ -59,6 +59,10 @@ public class Share2 {
      */
     private String componentClassName;
 
+    /**
+     * Share complete onActivityResult requestCode
+     */
+    private int requestCode;
 
     private Share2(@NonNull Builder builder) {
         this.activity = builder.activity;
@@ -68,6 +72,7 @@ public class Share2 {
         this.contentText = builder.textContent;
         this.componentPackageName = builder.componentPackageName;
         this.componentClassName = builder.componentClassName;
+        this.requestCode = builder.requestCode;
     }
 
     /**
@@ -88,7 +93,11 @@ public class Share2 {
 
             if (shareIntent.resolveActivity(activity.getPackageManager()) != null) {
                 try {
-                    activity.startActivityForResult(Intent.createChooser(shareIntent, title), 911);
+                    if (requestCode != -1) {
+                        activity.startActivityForResult(Intent.createChooser(shareIntent, title), requestCode);
+                    } else {
+                        activity.startActivity(Intent.createChooser(shareIntent, title));
+                    }
                 } catch (Exception e) {
                     Log.e(TAG, Log.getStackTraceString(e));
                 }
@@ -115,7 +124,7 @@ public class Share2 {
             case ShareContentType.IMAGE :
             case ShareContentType.AUDIO :
             case ShareContentType.VIDEO :
-            case ShareContentType.File  :
+            case ShareContentType.FILE:
                 shareIntent.setAction(Intent.ACTION_SEND);
                 shareIntent.addCategory("android.intent.category.DEFAULT");
                 shareIntent.setType(contentType);
@@ -171,12 +180,13 @@ public class Share2 {
 
     public static class Builder {
         private Activity activity;
-        private @ShareContentType String contentType = ShareContentType.File;
+        private @ShareContentType String contentType = ShareContentType.FILE;
         private String title;
         private String componentPackageName;
         private String componentClassName;
         private Uri shareFileUri;
         private String textContent;
+        private int requestCode = -1;
 
         Builder(Activity activity) {
             this.activity = activity;
@@ -231,6 +241,16 @@ public class Share2 {
         public Builder setShareToComponent(String componentPackageName, String componentClassName) {
             this.componentPackageName = componentPackageName;
             this.componentClassName = componentClassName;
+            return this;
+        }
+
+        /**
+         * Set onActivityResult requestCode, default value is -1
+         * @param requestCode requestCode
+         * @return Builder
+         */
+        public Builder setOnActivityResult (int requestCode) {
+            this.requestCode = requestCode;
             return this;
         }
 

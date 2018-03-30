@@ -16,6 +16,8 @@ import android.widget.Toast;
 public class DemoActivity extends AppCompatActivity {
 
     private static final int FILE_SELECT_CODE = 100;
+    private static final int REQUEST_SHARE_FILE_CODE = 120;
+
     private TextView tvShareFileUri;
     private Uri shareFileUrl = null;
 
@@ -42,11 +44,12 @@ public class DemoActivity extends AppCompatActivity {
                 break;
             case R.id.bt_share_image:
                   new Share2.Builder(this)
-                        .setContentType(ShareContentType.IMAGE)
-                        .setShareFileUri(getShareFileUri())
-                        .setTitle("Share Image")
-                        .build()
-                        .shareBySystem();
+                          .setContentType(ShareContentType.IMAGE)
+                          .setShareFileUri(getShareFileUri())
+                 //.setShareToComponent("com.tencent.mm", "com.tencent.mm.ui.tools.ShareToTimeLineUI")
+                          .setTitle("Share Image")
+                          .build()
+                          .shareBySystem();
                 break;
             case R.id.bt_share_audio:
                 new Share2.Builder(this)
@@ -66,9 +69,10 @@ public class DemoActivity extends AppCompatActivity {
                 break;
             case R.id.bt_share_file:
                 new Share2.Builder(this)
-                        .setContentType(ShareContentType.File)
+                        .setContentType(ShareContentType.FILE)
                         .setShareFileUri(getShareFileUri())
                         .setTitle("Share File")
+                        .setOnActivityResult(REQUEST_SHARE_FILE_CODE)
                         .build()
                         .shareBySystem();
                 break;
@@ -76,7 +80,6 @@ public class DemoActivity extends AppCompatActivity {
                 break;
         }
     }
-
 
     private void openFileChooser() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
@@ -99,8 +102,10 @@ public class DemoActivity extends AppCompatActivity {
             shareFileUrl = data.getData();
             tvShareFileUri.setText(shareFileUrl.toString());
 
-            //  String filePath = FileUtil.getFileRealPath(this, shareFileUrl);
-            //  shareFileUrl = FileUtil.getFileUri(this, null, new File(filePath));
+            // String filePath = FileUtil.getFileRealPath(this, shareFileUrl);
+            // shareFileUrl = FileUtil.getFileUri(this, null, new File(filePath));
+        } else if (requestCode == REQUEST_SHARE_FILE_CODE){
+            // todo share complete.
         }
     }
 
