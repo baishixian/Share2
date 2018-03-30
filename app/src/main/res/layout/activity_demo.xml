@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        tools:context="gdut.bsx.share2.DemoActivity">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:background="#cfcfcf">
+
+        <TextView
+                android:id="@+id/tv_share_file_url"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Share file Uri."
+                android:textSize="15sp"/>
+
+        <Button
+                android:id="@+id/bt_choose_share_file"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:onClick="handlerShare"
+                android:textSize="15sp"
+                android:textAllCaps="false"
+                android:text="Choose Share File"/>
+
+    </LinearLayout>
+
+    <Button
+            android:id="@+id/bt_share_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:onClick="handlerShare"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            android:text="Share Text"/>
+
+    <Button
+            android:id="@+id/bt_share_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:onClick="handlerShare"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            android:text="Share Image"/>
+
+    <Button
+            android:id="@+id/bt_share_video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:onClick="handlerShare"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            android:text="Share Video"/>
+
+    <Button
+            android:id="@+id/bt_share_audio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:onClick="handlerShare"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            android:text="Share Audio"/>
+
+    <Button
+            android:id="@+id/bt_share_file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:onClick="handlerShare"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:text="Share File"/>
+
+</LinearLayout>

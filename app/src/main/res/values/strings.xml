@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Share2</string>
+    <string name="please_install_filemanager">请先安装文件管理器</string>
+    <string name="select_file">选择文件</string>
+</resources>
