@@ -7,7 +7,7 @@
         android:padding="16dp"
         android:orientation="vertical"
         android:gravity="center_horizontal"
-        tools:context="gdut.bsx.share2.DemoActivity">
+        tools:context="gdut.bsx.share2.demo.DemoActivity">
 
     <LinearLayout
             android:layout_width="match_parent"

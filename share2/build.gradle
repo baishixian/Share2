@@ -8,8 +8,8 @@ android {
     defaultConfig {
         minSdkVersion 11
         targetSdkVersion 27
-        versionCode 2
-        versionName "0.9.1"
+        versionCode 4
+        versionName "0.9.3"
 
     }
 
@@ -44,7 +44,7 @@ allprojects {
 }
 
 def lib_name = "Share2"
-version = "0.9.0"
+version = "0.9.3"
 group = "gdut.bsx"
 def siteUrl = 'https://github.com/baishixian/Share2'
 def gitUrl = 'https://github.com/baishixian/Share2.git'

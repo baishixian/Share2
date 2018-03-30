@@ -64,6 +64,11 @@ public class Share2 {
      */
     private int requestCode;
 
+    /**
+     * Forced Use System Chooser
+     */
+    private boolean forcedUseSystemChooser;
+
     private Share2(@NonNull Builder builder) {
         this.activity = builder.activity;
         this.contentType = builder.contentType;
@@ -73,6 +78,7 @@ public class Share2 {
         this.componentPackageName = builder.componentPackageName;
         this.componentClassName = builder.componentClassName;
         this.requestCode = builder.requestCode;
+        this.forcedUseSystemChooser = builder.forcedUseSystemChooser;
     }
 
     /**
@@ -91,12 +97,16 @@ public class Share2 {
                 title = "";
             }
 
+            if (forcedUseSystemChooser) {
+                shareIntent = Intent.createChooser(shareIntent, title);
+            }
+
             if (shareIntent.resolveActivity(activity.getPackageManager()) != null) {
                 try {
                     if (requestCode != -1) {
-                        activity.startActivityForResult(Intent.createChooser(shareIntent, title), requestCode);
+                        activity.startActivityForResult(shareIntent, requestCode);
                     } else {
-                        activity.startActivity(Intent.createChooser(shareIntent, title));
+                        activity.startActivity(shareIntent);
                     }
                 } catch (Exception e) {
                     Log.e(TAG, Log.getStackTraceString(e));
@@ -187,8 +197,9 @@ public class Share2 {
         private Uri shareFileUri;
         private String textContent;
         private int requestCode = -1;
+        private boolean forcedUseSystemChooser = true;
 
-        Builder(Activity activity) {
+        public Builder(Activity activity) {
             this.activity = activity;
         }
 
@@ -251,6 +262,16 @@ public class Share2 {
          */
         public Builder setOnActivityResult (int requestCode) {
             this.requestCode = requestCode;
+            return this;
+        }
+
+        /**
+         * Forced Use System Chooser To Share
+         * @param enable default is true
+         * @return Builder
+         */
+        public Builder forcedUseSystemChooser (boolean enable) {
+            this.forcedUseSystemChooser = enable;
             return this;
         }
 

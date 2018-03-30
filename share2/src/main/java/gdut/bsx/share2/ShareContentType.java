@@ -16,7 +16,7 @@ import java.lang.annotation.RetentionPolicy;
 @StringDef({ShareContentType.TEXT, ShareContentType.IMAGE,
         ShareContentType.AUDIO, ShareContentType.VIDEO, ShareContentType.FILE})
 @Retention(RetentionPolicy.SOURCE)
-@interface ShareContentType {
+public @interface ShareContentType {
     /**
      * Share Text
      */

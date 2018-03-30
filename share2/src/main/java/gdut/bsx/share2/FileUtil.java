@@ -24,7 +24,7 @@ import java.lang.reflect.Method;
  * @date 2018/3/29 12:20
  */
 
-class FileUtil {
+public class FileUtil {
 
     private static final String TAG = "Share";
 

@@ -1,4 +1,4 @@
-package gdut.bsx.share2;
+package gdut.bsx.share2.demo;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -8,6 +8,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import gdut.bsx.share2.Share2;
+import gdut.bsx.share2.ShareContentType;
 
 /**
  * @author baishixian
@@ -39,6 +42,7 @@ public class DemoActivity extends AppCompatActivity {
                         .setContentType(ShareContentType.TEXT)
                         .setTextContent("This is a test message.")
                         .setTitle("Share Text")
+                        // .forcedUseSystemChooser(false)
                         .build()
                         .shareBySystem();
                 break;
@@ -46,7 +50,7 @@ public class DemoActivity extends AppCompatActivity {
                   new Share2.Builder(this)
                           .setContentType(ShareContentType.IMAGE)
                           .setShareFileUri(getShareFileUri())
-                 //.setShareToComponent("com.tencent.mm", "com.tencent.mm.ui.tools.ShareToTimeLineUI")
+                          .setShareToComponent("com.tencent.mm", "com.tencent.mm.ui.tools.ShareToTimeLineUI")
                           .setTitle("Share Image")
                           .build()
                           .shareBySystem();
@@ -93,6 +97,7 @@ public class DemoActivity extends AppCompatActivity {
             Toast.makeText(this, getString(R.string.please_install_filemanager), Toast.LENGTH_SHORT).show();
         }
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
