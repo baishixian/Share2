@@ -12,6 +12,8 @@ Share2 利用了 Android 系统的原生 API 实现了分享功能，支持文�
 
 <img src="https://upload-images.jianshu.io/upload_images/580515-360aa823c6d64335.png" width="50%" height="50%">
 
+[Demo 下载](https://github.com/baishixian/Share2/releases/download/0.9.3/demo.apk)
+
 ### 相关文章：
 
 [利用 Android 系统原生 API 实现分享功能](https://www.jianshu.com/p/1d4bd2c5ef69) 和
@@ -30,7 +32,7 @@ repositories {
 **在 Module 的 build.gradle 下添加 Share2 依赖**
 
 ```
-compile 'gdut.bsx:share2:0.9.2'
+compile 'gdut.bsx:share2:0.9.3'
 ```
 
 ## 使用 Share2 进行分享
