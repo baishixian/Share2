@@ -39,7 +39,7 @@ compile 'gdut.bsx:share2:0.9.2'
 
 ```
 new Share2.Builder(this) 
-	  // 指定分享的文件类型
+      // 指定分享的文件类型
       .setContentType(ShareContentType.IMAGE)
       // 设置要分享的文件 Uri
       .setShareFileUri(shareImageUri)
