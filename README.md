@@ -54,7 +54,7 @@ new Share2.Builder(this)
 
 #### Share2 支持多种类型的内容分享，你可以通过 ` setContentType(type)` 来进行设置。分享文件时可以调用`setShareFileUri` 方法来设置文件的 `Uri`。
 
-> **注意：**此 `Uri` 必须是系统 `ContentProvider` 返回的，不能是自定义 `FileProvider` 返回的 `Uri`，不然会造成其他第三方应用无法识别，比如QQ、微信等应用会提示获取不到文件内容。
+> **⚠️注意** 此 `Uri` 必须是系统 `ContentProvider` 返回的，而不能是自定义 `FileProvider` 返回的 `Uri`，不然会造成其他第三方应用无法识别，比如QQ、微信等应用会提示获取不到文件内容的问题就是由此造成。
 
 相关内容可参考我的文章：[利用 Android 系统原生 API 实现分享功能（2）](https://www.jianshu.com/p/a950f5596a01)
 
