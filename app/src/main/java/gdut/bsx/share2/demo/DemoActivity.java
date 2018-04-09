@@ -1,8 +1,13 @@
 package gdut.bsx.share2.demo;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +25,7 @@ public class DemoActivity extends AppCompatActivity {
 
     private static final int FILE_SELECT_CODE = 100;
     private static final int REQUEST_SHARE_FILE_CODE = 120;
+    private static final int REQUEST_WRITE_STORAGE_PERMISSION = 121;
 
     private TextView tvShareFileUri;
     private Uri shareFileUrl = null;
@@ -29,6 +35,24 @@ public class DemoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_demo);
         tvShareFileUri = findViewById(R.id.tv_share_file_url);
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_WRITE_STORAGE_PERMISSION);
+            } else {
+                Toast.makeText(this, "缺少文件读写权限", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_WRITE_STORAGE_PERMISSION) {
+            if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "缺少文件读写权限，可能无法正常工作", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     public void handlerShare(View view) {

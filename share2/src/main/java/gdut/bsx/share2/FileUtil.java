@@ -1,9 +1,11 @@
 package gdut.bsx.share2;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
@@ -11,6 +13,7 @@ import android.os.Environment;
 import android.os.StrictMode;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -44,6 +47,11 @@ public class FileUtil {
 
         if (file == null || !file.exists()) {
             Log.e(TAG,"getFileUri file is null or not exists.");
+            return null;
+        }
+
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            Log.e(TAG,"getFileUri miss WRITE_EXTERNAL_STORAGE permission.");
             return null;
         }
 
