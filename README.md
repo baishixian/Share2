@@ -30,12 +30,6 @@ repositories {
 }
 ```
 
-文件分享前必须要先获得存储权限，对于系统 API 22 及以上的设备请先动态获取存储授权，Share2 内部不会主动请求权限。
-
-```
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-```
-
 **在 Module 的 build.gradle 下添加 Share2 依赖**
 
 ```
@@ -43,6 +37,13 @@ compile 'gdut.bsx:share2:0.9.3'
 ```
 
 ## 使用 Share2 进行分享
+
+
+文件分享前必须要先获得存储权限，对于系统 API 22 及以上的设备请先动态获取存储授权，Share2 内部不会主动请求权限。
+
+```
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+```
 
 ### 分享一张图片
 
