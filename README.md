@@ -60,20 +60,26 @@ new Share2.Builder(this)
       .shareBySystem();
 ```
 
-#### Share2 支持多种类型的内容分享，你可以通过 ` setContentType(type)` 来进行设置。分享文件时可以调用`setShareFileUri` 方法来设置文件的 `Uri`。
+### 关键步骤
 
-> **⚠️注意** 此 `Uri` 必须是系统 `ContentProvider` 返回的，而不能是自定义 `FileProvider` 返回的 `Uri`，不然会造成其他第三方应用无法识别，比如QQ、微信等应用会提示获取不到文件内容的问题就是由此造成。
+#### 1.使用 ` setContentType(type)` 来设置被分享文件的类型
 
-相关内容可参考我的文章：[利用 Android 系统原生 API 实现分享功能（2）](https://www.jianshu.com/p/a950f5596a01)
+Share2 支持多种类型的内容分享，指定 `ContentType` 是为了明确文件的类型，以便于系统去匹配合适的 App 处理。
 
-#### 对于只知道文件路径的情况，Share2 提供了 `FileUtil.getFileUri()` 方法来帮助你获取对应文件的 `Uri`：
+> 如果你无法明确被分享文件的类型，那你可以使用通用的文件类型 `ShareContentType.FILE`。
+
+#### 2.调用 `setShareFileUri(uri)` 方法设置被分享文件的 `Uri`
+
+**⚠️注意** 此方法传入的 `Uri` 必须是系统提供的 `ContentProvider` 返回的，而不能是自定义 `FileProvider` 返回的 `Uri`，不然会造成其他第三方应用无法识别的问题。
+
+> 比如调用系统拍照录制或系统文件选择器返回的 Uri 都是符合要求的，而如果传入其他一些不符合要求 Uri，那么在分享时其他第三方应用如QQ、微信等就会提示获取不到文件的内容。
+
+**对于无法确定 Uri 是否合适的情况，建议你使用 Share2 提供的 `FileUtil.getFileUri()` 方法来获取对应文件的 `Uri`：**
 
 ```
-// FileUtil.Class
+// FileUtil.Class 如果不知道文件类型，参数 `shareContentType` 可以直接传入 `null`
 public static Uri getFileUri (Context context, @ShareContentType String shareContentType, File file)
 ```
-
-> 如果不知道文件类型，参数 `shareContentType` 可以直接传入 `null`。
 
 ## 其他一些使用场景
 
