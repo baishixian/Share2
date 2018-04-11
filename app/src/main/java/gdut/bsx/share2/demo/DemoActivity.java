@@ -40,7 +40,7 @@ public class DemoActivity extends AppCompatActivity {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_WRITE_STORAGE_PERMISSION);
             } else {
-                Toast.makeText(this, "缺少文件读写权限", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "缺少文件读写权限，可能会造成无法分享文件", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -50,13 +50,13 @@ public class DemoActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_WRITE_STORAGE_PERMISSION) {
             if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "缺少文件读写权限，可能无法正常工作", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "缺少文件读写权限，可能会造成无法分享文件", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
-    public void handlerShare(View view) {
 
+    public void handlerShare(View view) {
         switch (view.getId()) {
             case R.id.bt_choose_share_file:
                 openFileChooser();
@@ -74,7 +74,7 @@ public class DemoActivity extends AppCompatActivity {
                   new Share2.Builder(this)
                           .setContentType(ShareContentType.IMAGE)
                           .setShareFileUri(getShareFileUri())
-                          .setShareToComponent("com.tencent.mm", "com.tencent.mm.ui.tools.ShareToTimeLineUI")
+                          //.setShareToComponent("com.tencent.mm", "com.tencent.mm.ui.tools.ShareToTimeLineUI")
                           .setTitle("Share Image")
                           .build()
                           .shareBySystem();
